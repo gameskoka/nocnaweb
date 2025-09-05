@@ -296,43 +296,56 @@
             transform: translateY(0);
         }
         
-        /* Titkosítási részleg */
-        .encryption-container {
+        /* Vezetőség részleg */
+        .leadership-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .leader-card {
             background-color: rgba(10, 10, 10, 0.8);
-            padding: 20px;
-            border-radius: 8px;
+            padding: 25px;
+            border-radius: 10px;
             border-left: 4px solid var(--accent);
-            overflow-x: auto;
-            margin: 20px 0;
-            position: relative;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
         
-        .encryption-item {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        .leader-card:hover {
+            transform: translateY(-5px);
         }
         
-        .encryption-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .encryption-item h4 {
-            color: var(--accent);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+        .leader-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid var(--accent);
+            background-color: var(--darker-bg);
             display: flex;
             align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--accent);
         }
         
-        .encryption-item h4 i {
-            margin-right: 10px;
+        .leader-name {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            font-weight: 600;
         }
         
-        .encryption-item p {
-            margin-bottom: 10px;
+        .leader-position {
+            color: var(--accent);
+            opacity: 0.8;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .leader-description {
             line-height: 1.5;
         }
         
@@ -358,6 +371,10 @@
             nav a {
                 width: 80%;
                 text-align: center;
+            }
+            
+            .leadership-container {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -451,6 +468,54 @@
             text-shadow: var(--neon-glow);
             transform: translateY(-5px);
         }
+        
+        /* Betöltési animáció */
+        .loader {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--accent);
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Üzenet stílusok */
+        .message-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            z-index: 10000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .message-success {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+        }
+        
+        .message-warning {
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+        }
+        
+        .message-error {
+            background: linear-gradient(135deg, #ff5e62, #c04848);
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -467,8 +532,8 @@
         <nav>
             <a href="#szabalyzat"><i class="fas fa-scroll"></i> Szabályzat</a>
             <a href="#reszlegek"><i class="fas fa-sitemap"></i> Részelegek</a>
+            <a href="#vezetoseg"><i class="fas fa-crown"></i> Vezetőség</a>
             <a href="#tagfelvetel"><i class="fas fa-user-plus"></i> Tagfelvétel</a>
-            <a href="#titkositas"><i class="fas fa-lock"></i> Titkosítás</a>
         </nav>
     </header>
     
@@ -502,6 +567,31 @@
             
             <h3><i class="fas fa-shield-alt"></i> Biztonsági Osztály</h3>
             <p>A szervezet fizikai és digitális biztonságáért felelős egység. Fejlett kibervédelmi technikákat alkalmaznak és biztosítják a tagok védelmét.</p>
+        </section>
+        
+        <section id="vezetoseg" class="fade-in">
+            <h2><i class="fas fa-crown"></i> Vezetőség</h2>
+            <p>A Noćna Organizációt kiemelkedő képességű vezetők irányítják, akik biztosítják a szervezet zökkenőmentes működését:</p>
+            
+            <div class="leadership-container">
+                <div class="leader-card">
+                    <div class="leader-image">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="leader-name">gameskoka</h3>
+                    <p class="leader-position">Főnök</p>
+                    <p class="leader-description">A szervezet alapítója és vezetője. Kivételes stratégiai gondolkodással rendelkezik, és soha nem hagy nyomokat maga után.</p>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-image">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="leader-name">Axon</h3>
+                    <p class="leader-position">Záhonyi</p>
+                    <p class="leader-description">Semmi infó nincs róla csak annyi hogy Záhonyi.</p>
+                </div>
+            </div>
         </section>
         
         <section id="tagfelvetel" class="fade-in">
@@ -539,31 +629,10 @@
                 </div>
                 
                 <div class="full-width">
-                    <button type="submit"><i class="fas fa-paper-plane"></i> Jelentkezés elküldése</button>
+                    <div class="loader" id="formLoader"></div>
+                    <button type="submit" id="submitButton"><i class="fas fa-paper-plane"></i> Jelentkezés elküldése</button>
                 </div>
             </form>
-        </section>
-        
-        <section id="titkositas" class="fade-in">
-            <h2><i class="fas fa-lock"></i> Titkosítási Rendszer</h2>
-            <p>A Noćna Organizáció titkos kommunikációs rendszere az alábbi elveken működik:</p>
-            
-            <div class="encryption-container">
-                <div class="encryption-item">
-                    <h4><i class="fas fa-code"></i> Titkosítási Protokollok</h4>
-                    <p>A szervezetben kizárólag titkosított csatornákon keresztül történik a kommunikáció. Minden tag egyedi titkosítókulccsal rendelkezik, amelyet havonta megváltoztatunk.</p>
-                </div>
-                
-                <div class="encryption-item">
-                    <h4><i class="fas fa-user-secret"></i> Azonosítási Rendszer</h4>
-                    <p>Minden tag egy 12 karakterből álló azonosítóval rendelkezik, amelyet csak a szervezet legfelsőbb szintű tagjai ismernek. Az azonosítót soha nem használjuk nyílt kommunikációban.</p>
-                </div>
-                
-                <div class="encryption-item">
-                    <h4><i class="fas fa-shield-alt"></i> Biztonsági Intézkedések</h4>
-                    <p>A kommunikációs csatornákat 256 bites titkosítással védjük, és minden üzenet önmegsemmisítő. Az üzenetek csak egyszer olvashatók, majd a rendszer automatikusan törli őket.</p>
-                </div>
-            </div>
         </section>
     </main>
 
@@ -573,10 +642,7 @@
         <p>A szervezet létezését nem ismerik el a hivatalos szervek</p>
         
         <div class="social-icons">
-            <a href="#"><i class="fab fa-discord"></i></a>
-            <a href="#"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="https://discord.gg/FDRSJfW7rH" target="_blank"><i class="fab fa-discord"></i></a>
         </div>
     </footer>
 
@@ -631,24 +697,173 @@
         window.addEventListener('load', checkVisibility);
         
         // Form elküldése
-        document.getElementById('tagfelveteliForm').addEventListener('submit', function(e) {
+        document.getElementById('tagfelveteliForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Animáció a gombhoz
-            const button = this.querySelector('button');
-            button.innerHTML = '<i class="fas fa-check"></i> Elküldve';
-            button.style.background = 'rgba(255, 255, 255, 0.9)';
-            button.style.color = 'var(--dark-bg)';
+            // Betöltés mutatása
+            const button = document.getElementById('submitButton');
+            const loader = document.getElementById('formLoader');
+            button.style.display = 'none';
+            loader.style.display = 'block';
             
-            // Üzenet megjelenítése
-            setTimeout(() => {
-                alert('Jelentkezésed elküldve. Várj a kapcsolatfelvételre a szokásos titkosított csatornákon.');
+            // Adatok összegyűjtése
+            const formData = {
+                becenev: document.getElementById('becenev').value,
+                kor: document.getElementById('kor').value,
+                reszleg: document.getElementById('reszleg').value,
+                erősségek: document.getElementById('erősségek').value,
+                motivacio: document.getElementById('motivacio').value,
+                timestamp: new Date().toLocaleString('hu-HU'),
+                ip: await getIPAddress()
+            };
+            
+            try {
+                // Adatok elküldése Discord webhookra
+                await sendToDiscord(formData);
+                
+                // Sikeres elküldés
+                showMessage('Jelentkezésed elküldve. Várj a kapcsolatfelvételre a szokásos titkosított csatornákon.', 'success');
                 this.reset();
-                button.innerHTML = '<i class="fas fa-paper-plane"></i> Jelentkezés elküldése';
-                button.style.background = 'rgba(255, 255, 255, 0.1)';
-                button.style.color = 'var(--text)';
-            }, 1000);
+            } catch (error) {
+                // Hiba esetén LocalStorage-ba mentés
+                saveToLocalStorage(formData);
+                showMessage('Jelentkezésed helyileg elmentve. Az adatokat később továbbítjuk.', 'warning');
+            } finally {
+                // UI visszaállítása
+                button.style.display = 'block';
+                loader.style.display = 'none';
+            }
         });
+        
+        // IP cím lekérése
+        async function getIPAddress() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                return 'Ismeretlen';
+            }
+        }
+        
+        // Adatok küldése Discord webhookra
+        async function sendToDiscord(data) {
+            // Cseréld le a WEBHOOK_URL-t a saját Discord webhook URL-edre!
+            const WEBHOOK_URL = 'https://discord.com/api/webhooks/1413609777480601611/csdKWCAccVJWFTvqtsBeh4fIenX6ALgakDqftw9Kol6q0Bbn-fyozfSVSBltYypbd0z_';
+            
+            // Formázott üzenet létrehozása
+            const message = {
+                username: 'Noćna Organizacija - Tagfelvétel',
+                avatar_url: 'https://i.imgur.com/7F6C3ej.png',
+                embeds: [{
+                    title: 'Új tagfelvételi jelentkezés',
+                    color: 0xffffff,
+                    fields: [
+                        { name: 'Becenév', value: data.becenev, inline: true },
+                        { name: 'Kor', value: data.kor, inline: true },
+                        { name: 'Részleg preferencia', value: getReszlegName(data.reszleg), inline: true },
+                        { name: 'Különleges készségek', value: data.erősségek.length > 1024 ? data.erősségek.substring(0, 1020) + '...' : data.erősségek },
+                        { name: 'Motiváció', value: data.motivacio.length > 1024 ? data.motivacio.substring(0, 1020) + '...' : data.motivacio },
+                        { name: 'Időpont', value: data.timestamp, inline: true },
+                        { name: 'IP cím', value: data.ip, inline: true }
+                    ],
+                    footer: { text: 'Noćna Organizacija - Az Éj Láthatatlan Erői' },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+            
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(message)
+            });
+            
+            if (!response.ok) {
+                throw new Error('Hiba történt a Discord webhook hívás során');
+            }
+        }
+        
+        // Részleg nevének formázása
+        function getReszlegName(value) {
+            const reszlegek = {
+                'adat': 'Információs Osztály',
+                'logisztika': 'Logisztikai Osztály',
+                'kapcsolatok': 'Külügyi Osztály',
+                'biztonsag': 'Biztonsági Osztály'
+            };
+            return reszlegek[value] || 'Ismeretlen';
+        }
+        
+        // Adatok mentése LocalStorage-ba (ha a küldés nem sikerül)
+        function saveToLocalStorage(data) {
+            try {
+                // Lekérjük a korábbi jelentkezéseket
+                let applications = JSON.parse(localStorage.getItem('noctnaApplications') || '[]');
+                
+                // Hozzáadjuk az újat
+                applications.push(data);
+                
+                // Elmentjük (max 50 jelentkezés)
+                if (applications.length > 50) {
+                    applications = applications.slice(-50);
+                }
+                
+                localStorage.setItem('noctnaApplications', JSON.stringify(applications));
+                
+                // Próbáljuk meg később elküldeni
+                setTimeout(trySendStoredApplications, 30000);
+                
+                return true;
+            } catch (error) {
+                console.error('Hiba a LocalStorage mentésekor:', error);
+                return false;
+            }
+        }
+        
+        // Eltárolt jelentkezések elküldése
+        async function trySendStoredApplications() {
+            try {
+                const applications = JSON.parse(localStorage.getItem('noctnaApplications') || '[]');
+                
+                if (applications.length === 0) return;
+                
+                for (let i = 0; i < applications.length; i++) {
+                    await sendToDiscord(applications[i]);
+                    
+                    // Sikeres küldés után eltávolítjuk
+                    applications.splice(i, 1);
+                    i--;
+                    localStorage.setItem('noctnaApplications', JSON.stringify(applications));
+                }
+            } catch (error) {
+                console.error('Hiba a tárolt jelentkezések küldésekor:', error);
+            }
+        }
+        
+        // Üzenet megjelenítése
+        function showMessage(message, type = 'info') {
+            // Eltávolítjuk a korábbi üzeneteket
+            const existingMessages = document.querySelectorAll('.message-toast');
+            existingMessages.forEach(msg => msg.remove());
+            
+            // Létrehozzuk az új üzenetet
+            const messageEl = document.createElement('div');
+            messageEl.className = `message-toast message-${type}`;
+            messageEl.textContent = message;
+            
+            document.body.appendChild(messageEl);
+            
+            // 5 másodperc után eltávolítjuk
+            setTimeout(() => {
+                messageEl.style.animation = 'fadeOut 0.5s ease';
+                setTimeout(() => messageEl.remove(), 500);
+            }, 5000);
+        }
+        
+        // Próbáljuk meg elküldeni a korábban eltárolt jelentkezéseket az oldal betöltésekor
+        window.addEventListener('load', trySendStoredApplications);
     </script>
 </body>
 </html>
